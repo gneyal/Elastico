@@ -1,6 +1,0 @@
-require '/Users/eyalgoren/Documents/Code/Elastico/elastico/lib/elastico.rb'
-Elastico::Configuration.url = "http://localhost:9200/"
-Elastico::Index.index_name = "tweet"
-Elastico::Index.settings_and_mappings_json = '{ "hi":"there"}'
-Elastico::Client.create_curl_for_settings_mappings
-Elastico::Client.send_settings_mappings_to_elasticsearch_server

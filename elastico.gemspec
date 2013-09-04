@@ -6,9 +6,9 @@ require 'elastico/version'
 Gem::Specification.new do |gem|
   gem.name          = "elastico"
   gem.version       = Elastico::VERSION
-  gem.authors       = ["Eyal-Mac"]
+  gem.authors       = ["Eyal Goren"]
   gem.email         = ["gneyal@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
+  gem.description   = %q{A general way to use elasticsearch}
   gem.summary       = %q{TODO: Write a gem summary}
   gem.homepage      = ""
 

@@ -27,3 +27,52 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+Usage:
+======
+
+1. Setup (define the mapping and settings)
+2. Index current data (Rake task)
+3. Search (define how to search, what to search)
+4. Callbacks (automatically added)
+
+
+class Someclass < ActiveRecord::Base
+	Elastico::Setup = { } (How to index)
+	Elastico::Search = {} (What to search)
+	Elastico:Index = {} (What to index)
+end
+
+
+Setup
+=====
+You should give a hash that looks something like that:
+settings_json[:settings] = {
+              :settings => {
+                :number_of_shards => 2,
+                :number_of_replicas => 0,
+                :analysis => {
+                  :filter => {
+                    :my_ngram  => {
+                       "type"     => "nGram",
+                       "max_gram" => 15,
+                       "min_gram" => 1 
+                     },
+                     :my_stemmer => {
+                      "type" => "stemmer",
+                      "name" => "english"
+                      }
+                   },
+                    :analyzer => {
+                      :ngram_analyzer => {
+                        "tokenizer"    => "whitespace",
+                        "filter"       => ["stop", "my_ngram", "lowercase"],
+                        "type"         => "custom" 
+                      }
+                    }
+                 } 
+                }
+              }
+
+a

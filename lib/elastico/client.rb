@@ -1,20 +1,14 @@
 module Elastico
-	class Client
-		def self.create_curl_for_settings_mappings
-			message = "curl -XPOST '" + 
-			Elastico::Configuration.url + Elastico::Index.index_name + 
-			"' -d '" + 
-			Elastico::Index.settings_and_mappings_json +
-			"'"
+	module Client
+		def send_settings_mappings_to_elasticsearch_server
+			to_url = self.elastico_url + self.elastico_index_name
+			RestClient.post(to_url, self.settings_and_mappings_json, :content_type => :json, :accept => :json) do |response, request, result|
+			  puts JSON.pretty_generate(JSON.parse(response.to_str))
+			end
 		end
 
-		def self.send_settings_mappings_to_elasticsearch_server
-			message = self.create_curl_for_settings_mappings
-			response = system("#{message}")
-			response
-		end
-
-		def self.send_anything_to_elasticsearch_server(url=Elastico::Configuration.url, content)
+		def send_anything_to_elasticsearch_server(url=Elastico::Configuration.url, content)
 		end
 	end
 end
+

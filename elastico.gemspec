@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Eyal Goren"]
   gem.email         = ["gneyal@gmail.com"]
   gem.description   = %q{A general way to use elasticsearch}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.summary       = %q{Elastico is a simple alternative to work with elasticsearch}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

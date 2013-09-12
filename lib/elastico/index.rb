@@ -1,26 +1,26 @@
 module Elastico
-	class Index
-		def self.settings_and_mappings_json
+	module Index
+		def settings_and_mappings_json
 			@settings_and_mappings_json || nil
 		end
 
-		def self.settings_and_mappings_json= json
+		def settings_and_mappings_json= json
 			@settings_and_mappings_json = json
 		end
 
-		def self.index_name
-			@index_name
+		def elastico_index_name
+			(self.name.gsub(/::/, "_") || @index_name).downcase + "_elastico"
 		end
 
-		def self.index_name= index_name
+		def elastico_index_name= index_name
 			@index_name = index_name
 		end
 
-		def self.type_name
-			@type_name
+		def elastico_type_name
+			(self.name.gsub(/::/, "_") || @type_name).downcase
 		end
 
-		def self.type_name= type_name
+		def elastico_type_name= type_name
 			@type_name = type_name
 		end	
 	end

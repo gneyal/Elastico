@@ -1,10 +1,10 @@
 module Elastico
-	class Configuration
-		def self.url
-			@url || nil
+	module Configuration
+		def elastico_url
+			@url || "http://localhost:9200/"
 		end
 
-		def self.url= url
+		def elastico_url= url
 			@url = url
 		end
 	end

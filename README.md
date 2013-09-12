@@ -39,3 +39,52 @@ In order to get a model work with elastic search you have to:
 
 
 In order to search this model, all you need to do is to do Model.elastic_search(term). This will return the elasticsearch results in an Elastico results object. You should override this method (elastic_search) if you want to get a better tailored solution.
+=======
+
+Usage:
+======
+
+1. Setup (define the mapping and settings)
+2. Index current data (Rake task)
+3. Search (define how to search, what to search)
+4. Callbacks (automatically added)
+
+
+class Someclass < ActiveRecord::Base
+	Elastico::Setup = { } (How to index)
+	Elastico::Search = {} (What to search)
+	Elastico:Index = {} (What to index)
+end
+
+
+Setup
+=====
+You should give a hash that looks something like that:
+settings_json[:settings] = {
+              :settings => {
+                :number_of_shards => 2,
+                :number_of_replicas => 0,
+                :analysis => {
+                  :filter => {
+                    :my_ngram  => {
+                       "type"     => "nGram",
+                       "max_gram" => 15,
+                       "min_gram" => 1 
+                     },
+                     :my_stemmer => {
+                      "type" => "stemmer",
+                      "name" => "english"
+                      }
+                   },
+                    :analyzer => {
+                      :ngram_analyzer => {
+                        "tokenizer"    => "whitespace",
+                        "filter"       => ["stop", "my_ngram", "lowercase"],
+                        "type"         => "custom" 
+                      }
+                    }
+                 } 
+                }
+              }
+
+a

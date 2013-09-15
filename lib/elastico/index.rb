@@ -9,7 +9,7 @@ module Elastico
 		end
 
 		def elastico_index_name
-			(self.name.gsub(/::/, "_") || @index_name).downcase + "_elastico"
+			(@index_name || self.name.gsub(/::/, "_").pluralize).downcase
 		end
 
 		def elastico_index_name= index_name
@@ -17,7 +17,7 @@ module Elastico
 		end
 
 		def elastico_type_name
-			(self.name.gsub(/::/, "_") || @type_name).downcase
+			(@type_name || self.name.gsub(/::/, "_")).downcase
 		end
 
 		def elastico_type_name= type_name

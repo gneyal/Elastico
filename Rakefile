@@ -10,3 +10,11 @@ Rake::TestTask.new do |t|
 end
  
 task :default => :test
+
+task :build do
+  system "gem build elastico.gemspec"
+end
+ 
+task :release => :build do
+  system "gem push elastico-#{Elastico::VERSION}"
+end

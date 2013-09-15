@@ -8,11 +8,11 @@ module Elastico
 			end
 		end
 
-		def general_request(url=Elastico::Configuration.url, content=nil)
-			RestClient.put(url, content, :content_type => :json, :accept => :json) do |response, request, result|
-			  puts JSON.pretty_generate(JSON.parse(response.to_str))
+		def general_request(content=nil, url=self.elastico_url, hash_respond_wanted = true)
+			RestClient.post(url, content, :content_type => :json, :accept => :json) do |response, request, result|
+			  ret = JSON.pretty_generate(JSON.parse(response.to_str))
+ 				hash_respond_wanted ? JSON.parse(ret) : ret
 			end
-			response
 		end
 
 		def elastico_search(hash_respond_wanted = true)

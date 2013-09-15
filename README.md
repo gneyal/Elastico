@@ -1,7 +1,11 @@
 # Elastico
 
-TODO: Write a gem description
+Elastico is a simple way to use elasticsearch. 
 
+You should use Elastico if you want to use elasticsearch full api. 
+
+You can:
+2. Define every thing 
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,7 +22,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+class ElasticoEnabledClass
+  include Elastico
+end
+
+In order to get a model work with elasticsearch + Elastico you have to:
+1. Configure it.
+1.1. Set ElasticoEnabledClass.elastico_url= to be the ip of your elasticsearch server (defaults to "localhost").
+1.2. Set ElasticoEnabledClass.settings_and_mappings_json= to be your settings and mapping json (defaults to nil, meaning you HAVE to set this up).
+1.3. Set up ElasticoEnabledClass.elastico_index_name (optional - defaults to your class name followed by Rail.env; here it will be elasticoenabledclass_development).
+1.4. Set up ElasticoEnabledClass.elastico_type_name (optional - defaults to your class name; here it will be elasticoenabledclass).
+
+1.5. Set up ElasticoEnabledClass.search_json= to be your standard search query for that model (required - defaults to nil, meaning you HAVE to set this up).
+
+2. Use it.
+2.1. After every save Elastico will automatically save you instance in elasticsearch.
+2.2. Import current database instances by creating a rake task to "save them all".
+2.3. Search it: call ElasticoEnabledClass.elastico_search to get your results, or override it to better suit your needs.
 
 ## Contributing
 
@@ -27,35 +47,6 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-Usage:
-
-In order to get a model work with elastic search you have to:
-1. Set Elastico::Configuration.url= to be the ip of your elasticsearch server (defaults to "localhost").
-2. Set Elastico::Index.settings_and_mappings_json= to be your settings and mapping json.
-3. Set up Elastico::Search.search_json= to be your standard search query for that model.
-4. Elastico will automatically save your active record models after every "save" call on that instance.
-5. In later versions I will add an auto rake task to import all of your Elastico models to elasticsearch server.
-
-
-In order to search this model, all you need to do is to do Model.elastic_search(term). This will return the elasticsearch results in an Elastico results object. You should override this method (elastic_search) if you want to get a better tailored solution.
-=======
-
-Usage:
-======
-
-1. Setup (define the mapping and settings)
-2. Index current data (Rake task)
-3. Search (define how to search, what to search)
-4. Callbacks (automatically added)
-
-
-class Someclass < ActiveRecord::Base
-	Elastico::Setup = { } (How to index)
-	Elastico::Search = {} (What to search)
-	Elastico:Index = {} (What to index)
-end
-
 
 Setup
 =====
@@ -86,5 +77,3 @@ settings_json[:settings] = {
                  } 
                 }
               }
-
-a

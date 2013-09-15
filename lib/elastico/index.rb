@@ -13,7 +13,7 @@ module Elastico
 		end
 
 		def elastico_index_name
-			(@index_name || self.name.gsub(/::/, "_").pluralize).downcase
+			(@index_name || (self.name.gsub(/::/, "_").pluralize + "_" + Rails.env) ).downcase
 		end
 
 		def elastico_index_name= index_name

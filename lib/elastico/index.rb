@@ -1,5 +1,9 @@
 module Elastico
 	module Index
+		def include_callbacks
+			include Elastico::Callbacks
+		end
+
 		def settings_and_mappings_json
 			@settings_and_mappings_json || nil
 		end

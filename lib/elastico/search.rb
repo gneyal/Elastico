@@ -7,10 +7,5 @@ module Elastico
 		def search_query= json
 			@search_query = json
 		end
-
-		def raise_exception  
-		  raise 'An error has occured'  
-
-		end
 	end
 end

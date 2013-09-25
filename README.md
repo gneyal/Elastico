@@ -1,8 +1,23 @@
 # Elastico
 
-Elastico is a simple way to use elasticsearch. 
+Elastico is a __simple__ layer that enables you to use elasticsearch __full__ API. The elasticsearch team created this [great API](http://www.elasticsearch.org/guide/) which enables you to do almost anything todays search engines allow you to do. 
 
-You should use Elastico if you want to use elasticsearch full api. 
+__Simple__. Elastico is built in a way so your configuration and usage is as simple and streat forward as possible. 
+
+__Full__. Elastico is built to be transparent, non-blocking, non-opinionated layer between your code to elasticsearch API. Meaning Elastico won't force anything about how to index your active records models, neither how to search it.
+
+There is one reason for building it Simple and Full:
+Elasticsearch community is large. Its supportive, and very helpful. Though most of it does not use ruby. Its most likely that you want to spend your time on feaguring out how to use elasticsearch rather than how to use the gem that works with elasticsearch. If you use Elastico, its most likely that your time will go to the former, and will be able to take advantage of the elasticsearch community.
+
+You should give Elastico a try if you want to use elasticsearch full api. 
+
+
+## Elasticsearch mini Background
+
+In general, in order to be able to use elasticsearch search capabilities you should:
+
+1. Define what and how you want to index (settings and mappings)
+2. Define what and how you want to search (query the index)
 
 ## Installation
 
@@ -12,7 +27,7 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -20,23 +35,40 @@ Or install it yourself as:
 
 ## Usage
 
-    class ElasticoEnabledClass 
-        include Elastico 
-    end 
+In your model:
+
+    class ElasticoEnabledClass < ActiveRecord::Base
+        include Elastico
+
+        settings_and_mappings_json = YOUR_JSON_COMES_HERE
+        search_json = YOUR_JSON_COMES_HERE
+    end
+
+In your controller:
+
+    class ElasticosController < ApplicationController  
+        results = ElasticoEnabledClass.elastico_search
+
+        # now do something with the results 
+    end
 
 In order to get a model work with elasticsearch + Elastico you have to:
 
-Configure it:
--------------
-1. Set ElasticoEnabledClass.elastico_url= to be the ip of your elasticsearch server (defaults to "localhost").
+Configure it
+------------
+__Mandatory__
 
-2. Set ElasticoEnabledClass.settings_and_mappings_json= to be your settings and mapping json (defaults to nil, meaning you HAVE to set this up).
+1. Set up ElasticoEnabledClass.search\_json= to be your standard search query for that model (defaults to nil). This is the same search query you would send if you were using the curl command.
 
-3. Set up ElasticoEnabledClass.elastico_index_name (optional - defaults to your class name followed by Rail.env; here it will be elasticoenabledclass_development).
+2. Set ElasticoEnabledClass.settings\_and\_mappings\_json= to be your settings and mapping json (defaults to nil). This is the same search query you would send if you were using the curl command.
 
-4. Set up ElasticoEnabledClass.elastico_type_name (optional - defaults to your class name; here it will be elasticoenabledclass).
+__Optional__
 
-5. Set up ElasticoEnabledClass.search_json= to be your standard search query for that model (required - defaults to nil, meaning you HAVE to set this up).
+1. Set ElasticoEnabledClass.elastico\_url= to be the ip of your elasticsearch server (defaults to "localhost:9200").
+
+2. Set up ElasticoEnabledClass.elastico\_index\_name (optional - defaults to your class name followed by Rail.env; here it will be elasticoenabledclass_development).
+
+3. Set up ElasticoEnabledClass.elastico\_type\_name (optional - defaults to your class name; here it will be elasticoenabledclass).
 
 Use it.
 -------
@@ -54,33 +86,6 @@ Use it.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-<!-- Setup
-=====
-You should give a hash that looks something like that:
-  
-    settings_json[:settings] = {
-                    :settings => {
-                      :number_of_shards => 2,
-                      :number_of_replicas => 0,
-                      :analysis => {
-                        :filter => {
-                          :my_ngram  => {
-                             "type"     => "nGram",
-                             "max_gram" => 15,
-                             "min_gram" => 1 
-                           },
-                           :my_stemmer => {
-                            "type" => "stemmer",
-                            "name" => "english"
-                            }
-                         },
-                          :analyzer => {
-                            :ngram_analyzer => {
-                              "tokenizer"    => "whitespace",
-                              "filter"       => ["stop", "my_ngram", "lowercase"],
-                              "type"         => "custom" 
-                            }
-                          }
-                       } 
-                      }
-                    } -->
+## Feedback
+
+Please send your feedback to gneyal+elastico@gmail.com

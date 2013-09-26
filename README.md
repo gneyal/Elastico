@@ -104,7 +104,7 @@ __Optional__
 
 Use it.
 -------
-1. After every save Elastico will automatically save you instance in elasticsearch.
+1. After every save Elastico will automatically save your instance in elasticsearch.
 
 2. Import current database instances by creating a rake task to "save" them all.
 

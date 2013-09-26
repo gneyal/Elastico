@@ -4,7 +4,7 @@ require_relative "./elastico/callbacks"
 require_relative "./elastico/index"
 require_relative "./elastico/search"
 require_relative "./elastico/client"
-
+require_relative "./elastico/import"
 
 module Elastico
 	def self.included(base)
@@ -12,6 +12,7 @@ module Elastico
   	base.extend Index
   	base.extend Search
 		base.extend Client
+		base.extend Import
 
 		base.send :include_callbacks
 	end

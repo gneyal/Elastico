@@ -13,8 +13,6 @@ module Elastico
 		end
 
 		def general_request(content=nil, url=self.elastico_url, options = { :hash_respond_wanted => :true })
-
-				logger.info("========== in post ")
 				RestClient.post(url, content, :content_type => :json, :accept => :json) do |response, request, result|
 				  ret = JSON.pretty_generate(JSON.parse(response.to_str))
 	 				options[:hash_respond_wanted] ? JSON.parse(ret) : ret

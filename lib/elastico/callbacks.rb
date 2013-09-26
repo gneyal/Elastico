@@ -3,7 +3,8 @@ module Elastico
 		def self.included(base)
 			update_conditions = lambda { update_index_with_instance_elastico }
       destroy_instance = lambda { destroy_instance_in_elastic_search }
-			base.send :after_save, update_conditions
+			
+      base.send :after_save, update_conditions
 			base.send :after_destroy, destroy_instance
       base.send :after_touch, update_conditions
 

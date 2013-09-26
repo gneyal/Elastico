@@ -2,7 +2,7 @@
 
 Elastico is a __simple__ layer that enables you to use elasticsearch __full__ API. The elasticsearch team created this [great API](http://www.elasticsearch.org/guide/) which enables you to do almost anything todays search engines allow you to do. 
 
-__Simple__. Elastico is built in a way so your configuration and usage is as simple and streat forward as possible. 
+__Simple__. Elastico is built in a way so your configuration and usage is as simple and straightforward as possible. 
 
 __Full__. Elastico is built to be transparent, non-blocking, non-opinionated layer between your code to elasticsearch API. Meaning Elastico won't force anything about how to index your active records models, neither how to search it.
 

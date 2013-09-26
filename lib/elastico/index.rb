@@ -26,6 +26,11 @@ module Elastico
 
 		def elastico_type_name= type_name
 			@type_name = type_name
-		end	
+		end
+
+		# This method should be over written in the model that includes elastico
+		def prepare_elastico_settings_and_mappings_json
+		  nil
+  	end
 	end
 end

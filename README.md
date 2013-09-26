@@ -21,6 +21,14 @@ In general, in order to be able to use elasticsearch search capabilities you sho
 
 ## Installation
 
+Install elasticsearch:
+
+    cd ~
+    wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.5.tar.gz .
+    tar -zxvf elasticsearch-0.90.5.tar.gz /bin/
+    rm elasticsearch-0.90.5.tar.gz
+    /bin/elasticsearch-0.90.5/bin/elasticsearch -f
+
 Add this line to your application's Gemfile:
 
     gem 'elastico'
@@ -37,21 +45,19 @@ Or install it yourself as:
 
 In your model:
 
-  class Apple < ActiveRecord::Base
+    class Apple < ActiveRecord::Base
+      include Elastico
+      attr_accessible :color, :name
 
-    def self.prepare_elastico_settings_and_mappings_json
-      json = { "apple" => {
-            "properties" => {
-                "name" => {"type" => "string"},
-                "color" => {"type" => "string"}
-            }
-        }}.to_json
+      def self.prepare_elastico_settings_and_mappings_json
+        json = { "apple" => {
+              "properties" => {
+                  "name" => {"type" => "string"},
+                  "color" => {"type" => "string"}
+              }
+          }}.to_json
+      end    
     end
-    include Elastico
-
-    attr_accessible :color, :name
-    
-  end
 
 
 In your controller:

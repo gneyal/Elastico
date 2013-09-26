@@ -6,7 +6,10 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    mime-types (1.25)
     rake (10.1.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     spawnling (2.1.1)
 
 PLATFORMS
@@ -15,4 +18,5 @@ PLATFORMS
 DEPENDENCIES
   elastico!
   rake
+  rest-client (~> 1.6.7)
   spawnling (~> 2.1.1)

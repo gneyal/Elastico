@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency "spawnling", "~> 2.1.1"
+  gem.add_development_dependency "rest-client"
 end

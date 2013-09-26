@@ -37,38 +37,70 @@ Or install it yourself as:
 
 In your model:
 
-    class ElasticoEnabledClass < ActiveRecord::Base
-        include Elastico
+  class Apple < ActiveRecord::Base
 
-        settings_and_mappings_json = YOUR_JSON_COMES_HERE
-        search_json = YOUR_JSON_COMES_HERE
+    def self.prepare_elastico_settings_and_mappings_json
+      json = { "apple" => {
+            "properties" => {
+                "name" => {"type" => "string"},
+                "color" => {"type" => "string"}
+            }
+        }}.to_json
     end
+    include Elastico
+
+    attr_accessible :color, :name
+    
+  end
+
 
 In your controller:
 
-    class ElasticosController < ApplicationController  
-        results = ElasticoEnabledClass.elastico_search
+    class ApplesController < ApplicationController  
+        def index
+          if params[:query]
+            Apple.search_query = prepare_search_json_for params[:query]
+            @apples = Apple.elastico_search
+          else
+            @apples = Apple.all
+          end
+        end
 
-        # now do something with the results 
+        private
+          def prepare_search_json_for query
+            json = { "query" => 
+                      {
+                        "term" => { "color" => query.to_s }
+                      }
+                    }.to_json
+          end
+        # now do something with your apples 
     end
 
-In order to get a model work with elasticsearch + Elastico you have to:
+
+Learn by Example
+================
+Fork the example app that shows how to use Elastico [here](https://github.com/gneyal/ElasticoExample).
+
 
 Configure it
 ------------
+
+In order to get a model work with elasticsearch + Elastico you have to:
+
 __Mandatory__
 
-1. Set up ElasticoEnabledClass.search\_json= to be your standard search query for that model (defaults to nil). This is the same search query you would send if you were using the curl command.
+1. In your controller, Create a class method __'prepare\_search\_json\_for'__ to be your standard search query for that model (defaults to nil). This is the same search query you would send if you were using the curl command.
 
-2. Set ElasticoEnabledClass.settings\_and\_mappings\_json= to be your settings and mapping json (defaults to nil). This is the same search query you would send if you were using the curl command.
+2. In your model, Create a class method __'prepare\_elastico\_settings\_and\_mappings\_json'__ to be your settings and mapping json (defaults to nil). This is the same search query you would send if you were using the curl command.
 
 __Optional__
 
-1. Set ElasticoEnabledClass.elastico\_url= to be the ip of your elasticsearch server (defaults to "localhost:9200").
+1. Set Apple.elastico\_url= to be the ip of your elasticsearch server (defaults to "localhost:9200").
 
-2. Set up ElasticoEnabledClass.elastico\_index\_name (optional - defaults to your class name followed by Rail.env; here it will be elasticoenabledclass_development).
+2. Set up Apple.elastico\_index\_name (optional - defaults to your class name followed by Rail.env; here it will be apples_development).
 
-3. Set up ElasticoEnabledClass.elastico\_type\_name (optional - defaults to your class name; here it will be elasticoenabledclass).
+3. Set up Apple.elastico\_type\_name (optional - defaults to your class name; here it will be Apple).
 
 Use it.
 -------
@@ -76,7 +108,7 @@ Use it.
 
 2. Import current database instances by creating a rake task to "save" them all.
 
-3. Search it: call ElasticoEnabledClass.elastico_search to get your results, or override it to better suit your needs.
+3. Search it: call Apple.elastico_search to get your results, or override it to better suit your needs.
 
 ## Contributing
 

@@ -53,12 +53,14 @@ In your model:
       attr_accessible :color, :name
 
       def self.prepare_elastico_settings_and_mappings_json
-        json = { "apple" => {
-              "properties" => {
-                  "name" => {"type" => "string"},
-                  "color" => {"type" => "string"}
-              }
-          }}.to_json
+        json = { "apple" => 
+                  {
+                    "properties" => 
+                      {
+                        "name" => {"type" => "string"},
+                        "color" => {"type" => "string"}
+                      }
+                }}.to_json
       end    
     end
 
@@ -86,6 +88,9 @@ In your controller:
         # now do something with your apples 
     end
 
+Import your active record instances simply by:
+
+    Apple.elastico_import_all
 
 Learn by Example
 ================

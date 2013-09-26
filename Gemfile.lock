@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    elastico (0.0.3)
+    elastico (0.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -18,5 +18,5 @@ PLATFORMS
 DEPENDENCIES
   elastico!
   rake
-  rest-client (~> 1.6.7)
+  rest-client
   spawnling (~> 2.1.1)

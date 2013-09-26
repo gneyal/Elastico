@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["gneyal+elastico@gmail.com"]
   gem.description   = %q{A general way to use elasticsearch}
   gem.summary       = %q{Elastico presents a simple way to work with elasticsearch. 1. Define your setup. 2. Define your search query. 3. Search.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/gneyal/Elastico"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

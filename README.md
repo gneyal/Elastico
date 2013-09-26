@@ -27,6 +27,9 @@ Install elasticsearch:
     wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.5.tar.gz .
     tar -zxvf elasticsearch-0.90.5.tar.gz /bin/
     rm elasticsearch-0.90.5.tar.gz
+
+Now run it:
+
     /bin/elasticsearch-0.90.5/bin/elasticsearch -f
 
 Add this line to your application's Gemfile:

@@ -86,7 +86,7 @@ In your controller:
 
 Learn by Example
 ================
-Fork the example app that shows how to use Elastico [here](https://github.com/gneyal/ElasticoExample).
+Fork/Clone the example app that shows how to use Elastico [here](https://github.com/gneyal/ElasticoExample).
 
 
 Configure it
@@ -107,6 +107,8 @@ __Optional__
 2. Set up Apple.elastico\_index\_name (optional - defaults to your class name followed by Rail.env; here it will be apples_development).
 
 3. Set up Apple.elastico\_type\_name (optional - defaults to your class name; here it will be Apple).
+
+4. Run Apple.elastico_import_all to import all your data.
 
 Use it.
 -------

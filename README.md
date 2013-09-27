@@ -49,19 +49,30 @@ Or install it yourself as:
 In your model:
 
     class Apple < ActiveRecord::Base
-      include Elastico
-      attr_accessible :color, :name
 
+      attr_accessible :color, :name
+      
       def self.prepare_elastico_settings_and_mappings_json
-        json = { "apple" => 
+        json = { "settings" => 
                   {
-                    "properties" => 
+                    "number_of_shards" => 3
+                  },
+                  "mappings" =>
+                  {
+                      "apple" => 
                       {
-                        "name" => {"type" => "string"},
-                        "color" => {"type" => "string"}
+                        "properties" => 
+                        {
+                          "name" => {"type" => "string"},
+                          "color" => {"type" => "string"}
+                        }
                       }
-                }}.to_json
-      end    
+                  }
+                }.to_json
+      end
+
+      # include elastico only after you declared your settings and mappings json in the method prepare_elastico_settings_and_mappings_json
+      include Elastico
     end
 
 
@@ -122,7 +133,7 @@ Use it.
 -------
 1. After every save Elastico will automatically save your instance in elasticsearch.
 
-2. Import current database instances by creating a rake task to "save" them all.
+2. Import current database by Apple.elastico_import_all.
 
 3. Search it: call Apple.elastico_search to get your results, or override it to better suit your needs.
 

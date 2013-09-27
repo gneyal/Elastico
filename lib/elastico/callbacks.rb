@@ -17,7 +17,11 @@ module Elastico
       index = self.class.elastico_index_name
       id = self.id
       url = self.class.elastico_url + index + "/" + type + "/" + id.to_s
-      instance = self.to_json
+      if self.respond_to? :elastico_to_indexed_json
+        instance = self.elastico_to_indexed_json
+      else
+        instance = self.to_json 
+      end
       self.class.general_request(instance, url)
     end
 

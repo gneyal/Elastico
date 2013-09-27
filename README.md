@@ -129,6 +129,8 @@ __Optional__
 
 4. Run Apple.elastico_import_all to import all your data.
 
+5. Controll what fields are indexed by declaring a method called 'elastico_to_indexed_json'.
+
 Use it.
 -------
 1. After every save Elastico will automatically save your instance in elasticsearch.

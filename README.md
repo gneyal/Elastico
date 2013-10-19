@@ -6,8 +6,10 @@ __Simple__. Elastico is built in a way so your configuration and usage is as sim
 
 __Full__. Elastico is built to be transparent, non-blocking, non-opinionated layer between your code to elasticsearch API. Meaning Elastico won't force anything about how to index your active records models, neither how to search it.
 
-There is one reason for building it Simple and Full:
-Elasticsearch community is large. Its supportive, and very helpful. Though most of it does not use ruby. Its most likely that you want to spend your time on feaguring out how to use elasticsearch rather than how to use the gem that works with elasticsearch. If you use Elastico, its most likely that your time will go to the former, and will be able to take advantage of the elasticsearch community.
+There is one main reason for building it Simple and Full:
+Elasticsearch community is large. Its supportive, and very helpful, though most of it does not use ruby. Its most likely that you want to spend your time on feaguring out how to use elasticsearch rather than how to use the gem that works with elasticsearch. If you use Elastico, its most likely that your time will go to the former, and will be able to take advantage of the elasticsearch community.
+
+
 
 You should give Elastico a try if you want to use elasticsearch full api. 
 

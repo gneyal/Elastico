@@ -9,7 +9,7 @@ module Elastico
       base.send :after_touch, update_conditions
 
       base.send :settings_and_mappings_json=, base.prepare_elastico_settings_and_mappings_json
-      base.send :send_settings_mappings_to_elasticsearch_server
+      # base.send :send_settings_mappings_to_elasticsearch_server
 		end
 
     def update_index_with_instance_elastico

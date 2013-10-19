@@ -1,15 +1,15 @@
 # Elastico
 
-Elastico is a __simple__ layer that enables you to use elasticsearch __full__ API. The elasticsearch team created this [great API](http://www.elasticsearch.org/guide/) which enables you to do almost anything todays search engines allow you to do. 
+Elastico is a __simple__ layer that enables you to use the __full__ elasticsearch API. The elasticsearch team created this [great API](http://www.elasticsearch.org/guide/) which enables you to do almost anything todays search engines allow you to do. 
 
-__Simple__. Elastico is built in a way so your configuration and usage is as simple and straightforward as possible. 
+__Simple__. Elastico is built to keep your configuration and usage as simple and straightforward as possible. 
 
-__Full__. Elastico is built to be transparent, non-blocking, non-opinionated layer between your code to elasticsearch API. Meaning Elastico won't force anything about how to index your active records models, neither how to search it.
+__Full__. Elastico is built to be a transparent, non-blocking, non-opinionated layer between your code and the elasticsearch API. Meaning Elastico won't force anything regarding the way you index your active records models, nor how to search it.
 
 There is one reason for building it Simple and Full:
-Elasticsearch community is large. Its supportive, and very helpful. Though most of it does not use ruby. Its most likely that you want to spend your time on feaguring out how to use elasticsearch rather than how to use the gem that works with elasticsearch. If you use Elastico, its most likely that your time will go to the former, and will be able to take advantage of the elasticsearch community.
+The elasticsearch community is large. Its supportive, and very helpful. Though most of it does not use ruby. Its most likely that you want to spend your time on figuring out how to use elasticsearch rather than how to use the gem that works with elasticsearch. If you use Elastico, its most likely that your time will go to the former, and will be able to take advantage of the elasticsearch community.
 
-You should give Elastico a try if you want to use elasticsearch full api. 
+You should give Elastico a try if you want to use the elasticsearch full api. 
 
 
 ## Elasticsearch mini Background

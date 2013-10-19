@@ -108,7 +108,9 @@ Import your active record instances simply by:
 
 Learn by Example
 ================
-Fork/Clone the example app that shows how to use Elastico [here](https://github.com/gneyal/ElasticoExample).
+
+1. Play with the example app online at [http://elasticoexample.herokuapp.com/](http://elasticoexample.herokuapp.com/)
+2. Fork/Clone the example app that shows how to use Elastico [here](https://github.com/gneyal/ElasticoExample).
 
 
 Configure it
